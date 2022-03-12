@@ -4,6 +4,7 @@ from checkout_solution import checkout
 
 class TestCheckout(unittest.TestCase):
 
+    @unittest.skip("Running tests for r2 now")
     def test_round_1(self):
         self.assertEqual(
             checkout("ABCDABCDABCDA"),
@@ -15,5 +16,9 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(checkout("525"), -1)
         self.assertEqual(checkout(["A", "A", "B"]), -1)
 
+    def test_round_2(self):
+        self.assertEqual(checkout("BBEE"), 40 * 2 + 30)
+
 if __name__ == "__main__":
     unittest.main()
+
