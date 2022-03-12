@@ -22,7 +22,7 @@ def checkout(skus: str) -> int:
     b_potentially_free = 0
 
     for sku in skus:
-        if sku not in ["A", "B", "C", "D", "E"]:
+        if sku not in ["A", "B", "C", "D", "E", "F"]:
             return -1
 
         goods[sku] += 1
@@ -63,4 +63,5 @@ def checkout(skus: str) -> int:
     total += b_nonspecial * 30
 
     return total
+
 
