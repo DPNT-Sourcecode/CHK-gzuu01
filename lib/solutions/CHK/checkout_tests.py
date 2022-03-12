@@ -32,13 +32,12 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(checkout("E" * 5), 40 * 5)
 
     def test_round_3(self):
-        # self.assertEqual(checkout("F" * 3), 20)
-        # self.assertEqual(checkout("F" * 4), 30)
-        # self.assertEqual(checkout("F" * 2), 20)
+        self.assertEqual(checkout("F" * 3), 20)
+        self.assertEqual(checkout("F" * 4), 30)
+        self.assertEqual(checkout("F" * 2), 20)
         self.assertEqual(checkout("BB"), 45)
         self.assertEqual(checkout("B"), 30)
         self.assertEqual(checkout("BBB"), 45 + 30)
-
         self.assertEqual(checkout("BBEE"), 40 * 2 + 30)
         self.assertEqual(checkout("BBBEE"), 40 * 2 + 45)
         self.assertEqual(checkout("BBBE"), 45 + 30 + 40)
@@ -76,9 +75,16 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(checkout("X"), ITEM_PRICES["X"])
         self.assertEqual(checkout("Y"), ITEM_PRICES["Y"])
         self.assertEqual(checkout("Z"), ITEM_PRICES["Z"])
+        self.assertEqual(checkout("V" * 3), 130)
+        self.assertEqual(checkout("V" * 2), 90)
+        self.assertEqual(checkout("V" * 5), 130 + 90)
+        self.assertEqual(checkout("V" * 6), 130 * 2)
+        self.assertEqual(checkout("V" * 7), 130 * 2 + 50)
+
 
 if __name__ == "__main__":
     unittest.main()
+
 
 
 

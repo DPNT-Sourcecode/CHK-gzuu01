@@ -73,8 +73,6 @@ def checkout(skus: str) -> int:
 
         # If the item doesn't have a special on itself
         if item not in SPECIALS:
-            print(item)
-            print(number)
             total += number * ITEM_PRICES[item]
 
         if item == "A":
@@ -146,11 +144,12 @@ def checkout(skus: str) -> int:
     q_total_free = min(goods["Q"], q_potentially_free)
     goods["Q"] -= q_total_free
     q_special, q_nonspecial = divmod(goods["Q"], 3)
-    total += b_special * 80
-    total += b_nonspecial * ITEM_PRICES["Q"]
+    total += q_special * 80
+    total += q_nonspecial * ITEM_PRICES["Q"]
 
     return total
     
+
 
 
 
