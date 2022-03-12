@@ -69,7 +69,7 @@ def checkout(skus: str) -> int:
     for item, number in goods.items():
 
         # If the item is discounted by others, we do the calc at the end
-        if item in DISCOUNTED_BY_OTHERS or GROUP_BUY:
+        if item in (DISCOUNTED_BY_OTHERS or GROUP_BUY):
             continue
 
         # If the item doesn't have a special on itself
@@ -164,6 +164,3 @@ def checkout(skus: str) -> int:
         total += goods[item] * ITEM_PRICES[item]
 
     return total
-    
-
-
