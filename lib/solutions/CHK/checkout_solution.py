@@ -50,6 +50,10 @@ def checkout(skus: str) -> int:
         "Z": 50
     }
 
+    specials = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
+
+    discounted_by_others = ["B", "M", "Q"]
+
     for sku in skus:
         if sku not in item_prices:
             return -1
@@ -58,21 +62,22 @@ def checkout(skus: str) -> int:
 
     for item, number in goods.items():
 
+        # If the item doesn't have a special on itself
+        if item not in specials:
+
+            # If the item is discounted by others, we do the calc at the end
+            if item in discounted_by_others:
+                continue
+
+            else:
+                total += number * item_prices[item]
+
         if item == "A":
             special_5, remainder = divmod(number, 5)
             special_3, nonspecial = divmod(remainder, 3)
             total += special_5 * 200
             total += special_3 * 130
             total += nonspecial * item_prices[item]
-
-        elif item == "B":
-            continue
-
-        elif item == "C":
-            total += number * item_prices[item]
-
-        elif item == "D":
-            total += number * item_prices[item]
 
         elif item == "E":
             total += number * item_prices[item]
@@ -92,6 +97,7 @@ def checkout(skus: str) -> int:
     total += b_nonspecial * 30
 
     return total
+
 
 
 
