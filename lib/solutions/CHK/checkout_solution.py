@@ -85,15 +85,64 @@ def checkout(skus: str) -> int:
 
         elif item == "F":
             special, nonspecial = divmod(number, 3)
-            total += special * 20
+            total += special * 2 * item_prices[item]
             total += nonspecial * item_prices[item]
 
-    # Revisit B now we know the total of Bs and Es
+        elif item == "H":
+            special_10, remainder = divmod(number, 10)
+            special_5, nonspecial = divmod(remainder, 5)
+            total += special_10 * 80
+            total += special_5 * 45
+            total += nonspecial * item_prices[item]
+
+        elif item == "K":
+            special, nonspecial = divmod(number, 2)
+            total += special * 150
+            total += nonspecial * item_prices[item]
+
+        elif item == "N":
+            total +=  number * item_prices[item]
+            m_potentially_free, _ = divmod(number, 3)
+
+        elif item == "P":
+            special, nonspecial = divmod(number, 5)
+            total += special * 200
+            total += nonspecial * item_prices[item]
+
+        elif item == "R":
+            total += number * item_prices[item]
+            q_potentially_free, _ = divmod(number, 3)   
+
+        elif item == "U":
+            special, nonspecial = divmod(number, 4)
+            total += special * 3 * item_prices[item]
+            total += nonspecial * item_prices[item]
+
+        elif item == "V":
+            special_3, remainder = divmod(number, 3)
+            special_2, nonspecial = divmod(remainder, 2)
+            total += special_3 * 130
+            total += special_2 * 90
+            total += nonspecial * item_prices[item]   
+
+    # B
     b_total_free = min(goods["B"], b_potentially_free)
     goods["B"] -= b_total_free
     b_special, b_nonspecial = divmod(goods["B"], 2)
-
     total += b_special * 45
     total += b_nonspecial * 30
 
+    # M
+    m_total_free = min(goods["M"], m_potentially_free)
+    goods["M"] -= m_total_free
+    total += goods["M"] * item_prices["M"]
+
+    # Q
+    q_total_free = min(goods["Q"], q_potentially_free)
+    goods["Q"] -= q_total_free
+    q_special, q_nonspecial = divmod(goods["Q"], 3)
+    total += b_special * 80
+    total += b_nonspecial * 30
+
     return total
+    
