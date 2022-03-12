@@ -18,7 +18,16 @@ class TestCheckout(unittest.TestCase):
 
     def test_round_2(self):
         self.assertEqual(checkout("BBEE"), 40 * 2 + 30)
+        self.assertEqual(checkout("BBBEE"), 40 * 2 + 45)
+        self.assertEqual(checkout("BBBE"), 45 + 30 + 40)
+        self.assertEqual(checkout("CAABAAB"), 20 + 130 + 50 + 45)
+        self.assertEqual(checkout("WOOF"), -1)
+        self.assertEqual(checkout(525), -1)
+        self.assertEqual(checkout("525"), -1)
+        self.assertEqual(checkout(["A", "A", "B"]), -1)
+        self.assertEqual(checkout("E"*5), 40 * 5)
 
 if __name__ == "__main__":
     unittest.main()
+
 

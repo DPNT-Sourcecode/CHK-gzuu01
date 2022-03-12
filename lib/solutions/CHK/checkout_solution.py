@@ -19,6 +19,7 @@ def checkout(skus: str) -> int:
     total = 0
 
     goods = defaultdict(int)
+    b_potentially_free = 0
 
     for sku in skus:
         if sku not in ["A", "B", "C", "D", "E"]:
@@ -48,7 +49,6 @@ def checkout(skus: str) -> int:
             total += number * 40
             b_potentially_free, _ = divmod(number, 2)
 
-
     # Revisit B now we know the total of Bs and Es
     b_total_free = min(goods["B"], b_potentially_free)
     goods["B"] -= b_total_free
@@ -58,6 +58,7 @@ def checkout(skus: str) -> int:
     total += b_nonspecial * 30
 
     return total
+
 
 
 
