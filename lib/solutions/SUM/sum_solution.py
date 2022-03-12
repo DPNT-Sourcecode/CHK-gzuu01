@@ -1,7 +1,7 @@
 # noinspection PyShadowingBuiltins,PyUnusedLocal
 
 
-def sum(x: int, y: int) -> int:
+def compute(x: int, y: int) -> int:
     """
     Sum the two input numbers, which must both be between 0-100.
 
@@ -21,4 +21,5 @@ def sum(x: int, y: int) -> int:
     result = x + y
 
     return result
+
 
