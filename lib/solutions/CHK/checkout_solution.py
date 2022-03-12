@@ -49,6 +49,11 @@ def checkout(skus: str) -> int:
             total += number * 40
             b_potentially_free, _ = divmod(number, 2)
 
+        elif item == "F":
+            special, nonspecial = divmod(number, 3)
+            total += special * 20
+            total += nonspecial * 10
+
     # Revisit B now we know the total of Bs and Es
     b_total_free = min(goods["B"], b_potentially_free)
     goods["B"] -= b_total_free
@@ -58,3 +63,4 @@ def checkout(skus: str) -> int:
     total += b_nonspecial * 30
 
     return total
+
