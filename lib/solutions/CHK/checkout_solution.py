@@ -58,7 +58,3 @@ def checkout(skus: str) -> int:
     total += b_nonspecial * 30
 
     return total
-
-
-
-
