@@ -156,12 +156,15 @@ def checkout(skus: str) -> int:
     grp_special, _ = divmod(total_grp, 3)
     grp_special_items = grp_special * 3
     for item in priority:
+        # import pdb; pdb.set_trace()
         items_free = min(goods[item], grp_special_items)
-        grp_special -= items_free
+        grp_special_items -= items_free
         goods[item] -= items_free
         total += goods[item] * ITEM_PRICES[item]
+        # pdb.set_trace()
 
     total += grp_special * 45
 
     return total
+
 
