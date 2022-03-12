@@ -51,9 +51,9 @@ def checkout(skus: str) -> int:
             b_potentially_free, _ = divmod(number, 2)
 
     # Now handle the free Bs
-    b_total_free = max(goods["B"], b_potentially_free)
-    b_special_free = max(b_special, b_total_free)
-    b_nonspecial_free = max(b_total_free - b_special_free, 0)
+    b_total_free = min(goods["B"], b_potentially_free)
+    b_special_free = min(b_special, b_total_free)
+    b_nonspecial_free = min(abs(b_total_free - b_special_free), 0)
 
     b_nonspecial -= b_nonspecial_free
     b_special -= b_special_free
@@ -61,5 +61,16 @@ def checkout(skus: str) -> int:
     total += b_special * 45
     total += b_nonspecial * 30
 
+    print(b_nonspecial)
+    print(b_special)
+
+    print(b_potentially_free)
+    print(b_total_free)
+    print(b_special_free)
+    print(b_nonspecial_free)
+    print(b_nonspecial)
+    print(b_special)
+
     return total
+
 
