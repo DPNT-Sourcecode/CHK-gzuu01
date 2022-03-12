@@ -2,7 +2,7 @@ from collections import defaultdict
 
 # noinspection PyUnusedLocal
 # skus = unicode string
-def checkout(skus: list) -> int:
+def checkout(skus: str) -> int:
     """
     
 
@@ -12,6 +12,9 @@ def checkout(skus: list) -> int:
     Returns:
         int: _description_
     """
+
+    if not isinstance(skus, str):
+        return -1
 
     total = 0
 
@@ -41,9 +44,7 @@ def checkout(skus: list) -> int:
         elif item == "D":
             total += number * 15
 
-        else:
-            return -1
-
     return total
+
 
 
