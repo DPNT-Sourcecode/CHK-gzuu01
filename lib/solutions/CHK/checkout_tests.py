@@ -9,7 +9,9 @@ class TestCheckout(unittest.TestCase):
             checkout("ABCDABCDABCDA"),
             130 + 50 + 45 + 30 + 20 * 3 + 15 * 3
         )
+        self.assertEqual(checkout("CAABAAAAB"), 20 + 130 * 2 + 45)
 
 
 if __name__ == "__main__":
     unittest.main()
+

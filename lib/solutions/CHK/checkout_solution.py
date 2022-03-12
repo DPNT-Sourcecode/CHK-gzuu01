@@ -3,15 +3,28 @@ from collections import defaultdict
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus: list) -> int:
+    """
+    
+
+    Args:
+        skus (list): _description_
+
+    Returns:
+        int: _description_
+    """
 
     total = 0
 
     goods = defaultdict(int)
 
     for sku in skus:
+        if sku not in ["A", "B", "C", "D"]:
+            return -1
+
         goods[sku] += 1
 
     for item, number in goods.items():
+
         if item == "A":
             special, nonspecial = divmod(number, 3)
             total += special * 130
@@ -28,5 +41,9 @@ def checkout(skus: list) -> int:
         elif item == "D":
             total += number * 15
 
+        else:
+            return -1
+
     return total
+
 
