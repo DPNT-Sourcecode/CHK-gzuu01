@@ -36,6 +36,7 @@ SPECIALS = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
 
 DISCOUNTED_BY_OTHERS = ["B", "M", "Q"]
 
+GROUP_BUY = ["S", "T", "X", "Y", "Z"]
 
 def checkout(skus: str) -> int:
     """
@@ -68,7 +69,7 @@ def checkout(skus: str) -> int:
     for item, number in goods.items():
 
         # If the item is discounted by others, we do the calc at the end
-        if item in DISCOUNTED_BY_OTHERS:
+        if item in DISCOUNTED_BY_OTHERS or GROUP_BUY:
             continue
 
         # If the item doesn't have a special on itself
@@ -118,6 +119,8 @@ def checkout(skus: str) -> int:
 
         elif item == "U":
             special, nonspecial = divmod(number, 4)
+            print(special)
+            print(nonspecial)
             total += special * 3 * ITEM_PRICES[item]
             total += nonspecial * ITEM_PRICES[item]
 
@@ -149,16 +152,15 @@ def checkout(skus: str) -> int:
 
     # S, T, X, Y, Z
     total_grp = goods["S"] + goods["T"] + goods["X"] + goods["Y"] + goods["Z"]
-    print(total_grp)
     priority = ("Z", "Y", "T", "S", "X")
     grp_special, _ = divmod(total_grp, 3)
     grp_special_items = grp_special * 3
     for item in priority:
         items_free = min(goods[item], grp_special_items)
-        print(items_free)
         grp_special -= items_free
         goods[item] -= items_free
         total += goods[item] * ITEM_PRICES[item]
 
     return total
     
+
