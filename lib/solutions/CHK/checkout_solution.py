@@ -45,7 +45,3 @@ def checkout(skus: str) -> int:
             total += number * 15
 
     return total
-
-
-
-
