@@ -4,13 +4,13 @@ from collections import defaultdict
 # skus = unicode string
 def checkout(skus: str) -> int:
     """
-    
+    Return the total price of a string sequence of skus.
 
     Args:
-        skus (list): _description_
+        skus (str): a sequence of skus e.g. "ABBA"
 
     Returns:
-        int: _description_
+        int: the total cost of these skus, including special offers
     """
 
     if not isinstance(skus, str):
@@ -45,6 +45,7 @@ def checkout(skus: str) -> int:
             total += number * 15
 
     return total
+
 
 
 
