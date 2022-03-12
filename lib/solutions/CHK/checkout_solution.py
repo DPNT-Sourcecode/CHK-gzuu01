@@ -76,6 +76,8 @@ def checkout(skus: str) -> int:
         if item not in SPECIALS:
             total += number * ITEM_PRICES[item]
 
+        print("79")
+
         if item == "A":
             special_5, remainder = divmod(number, 5)
             special_3, nonspecial = divmod(remainder, 3)
@@ -163,4 +165,5 @@ def checkout(skus: str) -> int:
 
     return total
     
+
 
