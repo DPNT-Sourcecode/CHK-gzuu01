@@ -14,7 +14,7 @@ ITEM_PRICES = {
     "H": 10,
     "I": 35,
     "J": 60,
-    "K": 80,
+    "K": 70,
     "L": 90,
     "M": 15,
     "N": 40,
@@ -22,14 +22,14 @@ ITEM_PRICES = {
     "P": 50,
     "Q": 30,
     "R": 50,
-    "S": 30,
+    "S": 20,
     "T": 20,
     "U": 40,
     "V": 50,
     "W": 20,
-    "X": 90,
-    "Y": 10,
-    "Z": 50
+    "X": 17,
+    "Y": 20,
+    "Z": 21
 }
 
 SPECIALS = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
@@ -100,7 +100,7 @@ def checkout(skus: str) -> int:
 
         elif item == "K":
             special, nonspecial = divmod(number, 2)
-            total += special * 150
+            total += special * 120
             total += nonspecial * ITEM_PRICES[item]
 
         elif item == "N":
@@ -146,6 +146,19 @@ def checkout(skus: str) -> int:
     q_special, q_nonspecial = divmod(goods["Q"], 3)
     total += q_special * 80
     total += q_nonspecial * ITEM_PRICES["Q"]
+
+    # S, T, X, Y, Z
+    total_grp = goods["S"] + goods["T"] + goods["X"] + goods["Y"] + goods["Z"]
+    print(total_grp)
+    priority = ("Z", "Y", "T", "S", "X")
+    grp_special, _ = divmod(total_grp, 3)
+    grp_special_items = grp_special * 3
+    for item in priority:
+        items_free = min(goods[item], grp_special_items)
+        print(items_free)
+        grp_special -= items_free
+        goods[item] -= items_free
+        total += goods[item] * ITEM_PRICES[item]
 
     return total
     
