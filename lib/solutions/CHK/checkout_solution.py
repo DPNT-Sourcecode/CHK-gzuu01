@@ -67,15 +67,15 @@ def checkout(skus: str) -> int:
 
     for item, number in goods.items():
 
+        # If the item is discounted by others, we do the calc at the end
+        if item in DISCOUNTED_BY_OTHERS:
+            continue
+
         # If the item doesn't have a special on itself
         if item not in SPECIALS:
-
-            # If the item is discounted by others, we do the calc at the end
-            if item in DISCOUNTED_BY_OTHERS:
-                continue
-
-            else:
-                total += number * ITEM_PRICES[item]
+            print(item)
+            print(number)
+            total += number * ITEM_PRICES[item]
 
         if item == "A":
             special_5, remainder = divmod(number, 5)
@@ -135,7 +135,7 @@ def checkout(skus: str) -> int:
     goods["B"] -= b_total_free
     b_special, b_nonspecial = divmod(goods["B"], 2)
     total += b_special * 45
-    total += b_nonspecial * 30
+    total += b_nonspecial * ITEM_PRICES["B"]
 
     # M
     m_total_free = min(goods["M"], m_potentially_free)
@@ -147,10 +147,11 @@ def checkout(skus: str) -> int:
     goods["Q"] -= q_total_free
     q_special, q_nonspecial = divmod(goods["Q"], 3)
     total += b_special * 80
-    total += b_nonspecial * 30
+    total += b_nonspecial * ITEM_PRICES["Q"]
 
     return total
     
+
 
 
 
