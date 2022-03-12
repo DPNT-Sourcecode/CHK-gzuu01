@@ -3,7 +3,7 @@ from collections import defaultdict
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-item_prices = {
+ITEM_PRICES = {
     "A": 50,
     "B": 30,
     "C": 20,
@@ -32,9 +32,9 @@ item_prices = {
     "Z": 50
 }
 
-specials = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
+SPECIALS = ["A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V"]
 
-discounted_by_others = ["B", "M", "Q"]
+DISCOUNTED_BY_OTHERS = ["B", "M", "Q"]
 
 
 def checkout(skus: str) -> int:
@@ -60,7 +60,7 @@ def checkout(skus: str) -> int:
     q_potentially_free = 0
 
     for sku in skus:
-        if sku not in item_prices:
+        if sku not in ITEM_PRICES:
             return -1
 
         goods[sku] += 1
@@ -68,71 +68,78 @@ def checkout(skus: str) -> int:
     for item, number in goods.items():
 
         # If the item doesn't have a special on itself
-        if item not in specials:
+        if item not in SPECIALS:
 
             # If the item is discounted by others, we do the calc at the end
-            if item in discounted_by_others:
+            if item in DISCOUNTED_BY_OTHERS:
                 continue
 
             else:
-                total += number * item_prices[item]
+                total += number * ITEM_PRICES[item]
 
         if item == "A":
             special_5, remainder = divmod(number, 5)
             special_3, nonspecial = divmod(remainder, 3)
             total += special_5 * 200
             total += special_3 * 130
-            total += nonspecial * item_prices[item]
+            total += nonspecial * ITEM_PRICES[item]
 
         elif item == "E":
-            total += number * item_prices[item]
+            total += number * ITEM_PRICES[item]
             b_potentially_free, _ = divmod(number, 2)
 
         elif item == "F":
             special, nonspecial = divmod(number, 3)
-            total += special * 2 * item_prices[item]
-            total += nonspecial * item_prices[item]
+            total += special * 2 * ITEM_PRICES[item]
+            total += nonspecial * ITEM_PRICES[item]
 
         elif item == "H":
             special_10, remainder = divmod(number, 10)
             special_5, nonspecial = divmod(remainder, 5)
             total += special_10 * 80
             total += special_5 * 45
-            total += nonspecial * item_prices[item]
+            total += nonspecial * ITEM_PRICES[item]
 
         elif item == "K":
             special, nonspecial = divmod(number, 2)
             total += special * 150
-            total += nonspecial * item_prices[item]
+            total += nonspecial * ITEM_PRICES[item]
 
         elif item == "N":
-            total +=  number * item_prices[item]
+            total +=  number * ITEM_PRICES[item]
             m_potentially_free, _ = divmod(number, 3)
 
         elif item == "P":
             special, nonspecial = divmod(number, 5)
             total += special * 200
-            total += nonspecial * item_prices[item]
+            total += nonspecial * ITEM_PRICES[item]
 
         elif item == "R":
-            total += number * item_prices[item]
+            total += number * ITEM_PRICES[item]
             q_potentially_free, _ = divmod(number, 3)   
 
         elif item == "U":
             special, nonspecial = divmod(number, 4)
-            total += special * 3 * item_prices[item]
-            total += nonspecial * item_prices[item]
+            total += special * 3 * ITEM_PRICES[item]
+            total += nonspecial * ITEM_PRICES[item]
 
         elif item == "V":
             special_3, remainder = divmod(number, 3)
             special_2, nonspecial = divmod(remainder, 2)
             total += special_3 * 130
             total += special_2 * 90
-            total += nonspecial * item_prices[item]   
+            total += nonspecial * ITEM_PRICES[item]   
 
     # B
+    print(goods["B"])
+    print(b_potentially_free)
     b_total_free = min(goods["B"], b_potentially_free)
+
+    print(b_total_free)
+
     goods["B"] -= b_total_free
+
+    print(goods["B"])
     b_special, b_nonspecial = divmod(goods["B"], 2)
     total += b_special * 45
     total += b_nonspecial * 30
@@ -140,7 +147,7 @@ def checkout(skus: str) -> int:
     # M
     m_total_free = min(goods["M"], m_potentially_free)
     goods["M"] -= m_total_free
-    total += goods["M"] * item_prices["M"]
+    total += goods["M"] * ITEM_PRICES["M"]
 
     # Q
     q_total_free = min(goods["Q"], q_potentially_free)
@@ -151,4 +158,5 @@ def checkout(skus: str) -> int:
 
     return total
     
+
 
