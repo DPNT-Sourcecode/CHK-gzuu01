@@ -119,8 +119,6 @@ def checkout(skus: str) -> int:
 
         elif item == "U":
             special, nonspecial = divmod(number, 4)
-            print(special)
-            print(nonspecial)
             total += special * 3 * ITEM_PRICES[item]
             total += nonspecial * ITEM_PRICES[item]
 
@@ -165,6 +163,7 @@ def checkout(skus: str) -> int:
     total += grp_special * 45
 
     return total
+
 
 
 
