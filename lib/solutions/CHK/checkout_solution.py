@@ -131,15 +131,8 @@ def checkout(skus: str) -> int:
             total += nonspecial * ITEM_PRICES[item]   
 
     # B
-    print(goods["B"])
-    print(b_potentially_free)
     b_total_free = min(goods["B"], b_potentially_free)
-
-    print(b_total_free)
-
     goods["B"] -= b_total_free
-
-    print(goods["B"])
     b_special, b_nonspecial = divmod(goods["B"], 2)
     total += b_special * 45
     total += b_nonspecial * 30
@@ -158,5 +151,6 @@ def checkout(skus: str) -> int:
 
     return total
     
+
 
 

@@ -1,6 +1,6 @@
 import unittest
 
-from checkout_solution import checkout, item_prices
+from checkout_solution import checkout, ITEM_PRICES
 
 class TestCheckout(unittest.TestCase):
 
@@ -46,34 +46,35 @@ class TestCheckout(unittest.TestCase):
         self.assertEqual(checkout("525"), -1)
         self.assertEqual(checkout(["A", "A", "B"]), -1)
         self.assertEqual(checkout("E" * 5), 40 * 5)
-        self.assertEqual(checkout("A"), item_prices["A"])
-        self.assertEqual(checkout("B"), item_prices["B"])
-        self.assertEqual(checkout("C"), item_prices["C"])
-        self.assertEqual(checkout("D"), item_prices["D"])
-        self.assertEqual(checkout("E"), item_prices["E"])
-        self.assertEqual(checkout("F"), item_prices["F"])
-        self.assertEqual(checkout("G"), item_prices["G"])
-        self.assertEqual(checkout("H"), item_prices["H"])
-        self.assertEqual(checkout("I"), item_prices["I"])
-        self.assertEqual(checkout("J"), item_prices["J"])
-        self.assertEqual(checkout("K"), item_prices["K"])
-        self.assertEqual(checkout("L"), item_prices["L"])
-        self.assertEqual(checkout("M"), item_prices["M"])
-        self.assertEqual(checkout("N"), item_prices["N"])
-        self.assertEqual(checkout("O"), item_prices["O"])
-        self.assertEqual(checkout("P"), item_prices["P"])
-        self.assertEqual(checkout("Q"), item_prices["Q"])
-        self.assertEqual(checkout("R"), item_prices["R"])
-        self.assertEqual(checkout("S"), item_prices["S"])
-        self.assertEqual(checkout("T"), item_prices["T"])
-        self.assertEqual(checkout("U"), item_prices["U"])
-        self.assertEqual(checkout("V"), item_prices["V"])
-        self.assertEqual(checkout("W"), item_prices["W"])
-        self.assertEqual(checkout("X"), item_prices["X"])
-        self.assertEqual(checkout("Y"), item_prices["Y"])
-        self.assertEqual(checkout("Z"), item_prices["Z"])
+        self.assertEqual(checkout("A"), ITEM_PRICES["A"])
+        self.assertEqual(checkout("B"), ITEM_PRICES["B"])
+        self.assertEqual(checkout("C"), ITEM_PRICES["C"])
+        self.assertEqual(checkout("D"), ITEM_PRICES["D"])
+        self.assertEqual(checkout("E"), ITEM_PRICES["E"])
+        self.assertEqual(checkout("F"), ITEM_PRICES["F"])
+        self.assertEqual(checkout("G"), ITEM_PRICES["G"])
+        self.assertEqual(checkout("H"), ITEM_PRICES["H"])
+        self.assertEqual(checkout("I"), ITEM_PRICES["I"])
+        self.assertEqual(checkout("J"), ITEM_PRICES["J"])
+        self.assertEqual(checkout("K"), ITEM_PRICES["K"])
+        self.assertEqual(checkout("L"), ITEM_PRICES["L"])
+        self.assertEqual(checkout("M"), ITEM_PRICES["M"])
+        self.assertEqual(checkout("N"), ITEM_PRICES["N"])
+        self.assertEqual(checkout("O"), ITEM_PRICES["O"])
+        self.assertEqual(checkout("P"), ITEM_PRICES["P"])
+        self.assertEqual(checkout("Q"), ITEM_PRICES["Q"])
+        self.assertEqual(checkout("R"), ITEM_PRICES["R"])
+        self.assertEqual(checkout("S"), ITEM_PRICES["S"])
+        self.assertEqual(checkout("T"), ITEM_PRICES["T"])
+        self.assertEqual(checkout("U"), ITEM_PRICES["U"])
+        self.assertEqual(checkout("V"), ITEM_PRICES["V"])
+        self.assertEqual(checkout("W"), ITEM_PRICES["W"])
+        self.assertEqual(checkout("X"), ITEM_PRICES["X"])
+        self.assertEqual(checkout("Y"), ITEM_PRICES["Y"])
+        self.assertEqual(checkout("Z"), ITEM_PRICES["Z"])
 
 if __name__ == "__main__":
     unittest.main()
+
 
 
